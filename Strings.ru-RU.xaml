@@ -1,0 +1,117 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!-- Общие строки -->
+  
+    <system:String x:Key="AppTitle">Авторизация</system:String>
+    <system:String x:Key="LoginTitle">Вход в систему</system:String>
+    <system:String x:Key="Email">Email</system:String>
+    <system:String x:Key="Password">Пароль</system:String>
+    <system:String x:Key="Confirm">Подтвердите пароль</system:String>
+    <system:String x:Key="SignIn">Войти</system:String>
+    <system:String x:Key="CreateAccount">Создать аккаунт</system:String>
+    <system:String x:Key="RegistrationTitle">Регистрация</system:String>
+    <system:String x:Key="RegistrationHeader">Регистрация</system:String>
+    <system:String x:Key="FirstName">Имя</system:String>
+    <system:String x:Key="LastName">Фамилия</system:String>
+    <system:String x:Key="Surname">Отчество</system:String>
+    <system:String x:Key="Phone">Телефон</system:String>
+    <system:String x:Key="CreateAccountButton">Создать аккаунт</system:String>
+    <system:String x:Key="BackToLoginButton">Назад к входу</system:String>
+
+    <system:String x:Key="AdminPanelTitle">Панель администратора</system:String>
+    <system:String x:Key="RoutesTab">Маршруты</system:String>
+    <system:String x:Key="UsersTab">Пользователи</system:String>
+    <system:String x:Key="DeleteButton">Удалить</system:String>
+
+    <!-- Для маршрутов -->
+    <!-- Русская версия -->
+    <system:String x:Key="AllTypes">Все</system:String>
+    <system:String x:Key="Bus">Автобус</system:String>
+    <system:String x:Key="Marshrutka">Маршрутка</system:String>
+    <system:String x:Key="SearchPlaceholder">Поиск...</system:String>
+    <system:String x:Key="TransportTypeLabel">Тип транспорта</system:String>
+    <system:String x:Key="PriceFrom">Цена от:</system:String>
+    <system:String x:Key="PriceTo">до:</system:String>
+    <system:String x:Key="IDColumn">ID</system:String>
+    <system:String x:Key="FromColumn">Откуда</system:String>
+    <system:String x:Key="ToColumn">Куда</system:String>
+    <system:String x:Key="DateColumn">Дата</system:String>
+    <system:String x:Key="TimeColumn">Время</system:String>
+    <system:String x:Key="TypeColumn">Тип</system:String>
+    <system:String x:Key="PriceColumn">Цена</system:String>
+    <system:String x:Key="QuantityColumn">Кол-во</system:String>
+    <system:String x:Key="DescriptionColumn">Описание</system:String>
+    <system:String x:Key="RouteManagement">Управление маршрутом</system:String>
+    <system:String x:Key="FromLabel">Откуда</system:String>
+    <system:String x:Key="ToLabel">Куда</system:String>
+    <system:String x:Key="DateLabel">Дата</system:String>
+    <system:String x:Key="TimeFormatLabel">Время (HH:mm)</system:String>
+    <system:String x:Key="TicketsCountLabel">Количество билетов</system:String>
+    <system:String x:Key="RouteDescriptionLabel">Описание маршрута</system:String>
+    <system:String x:Key="SaveChangesButton">Сохранить изменения</system:String>
+    <system:String x:Key="CreateNewButton">Создать новый</system:String>
+    <system:String x:Key="Posadka">Место посадки</system:String>
+    <system:String x:Key="Exit">Место высдаки</system:String>
+
+    <!-- Для пользователей -->
+    <system:String x:Key="UserManagement">Управление пользователем</system:String>
+    <system:String x:Key="AdminCheckbox">Админ</system:String>
+    <system:String x:Key="Only">Только администраторы</system:String>
+    <system:String x:Key="SaveUserButton">Сохранить</system:String>
+    <system:String x:Key="CreateUserButton">Создать нового</system:String>
+
+
+    <system:String x:Key="OrdersTab">Заказы</system:String>
+    <system:String x:Key="StatisticsTab">Статистика</system:String>
+
+    <system:String x:Key="DashboardTitle">Личный кабинет</system:String>
+    <system:String x:Key="WelcomeMessage">Добро пожаловать!</system:String>
+    <system:String x:Key="SearchRoutesButton">Поиск маршрутов</system:String>
+    <system:String x:Key="ViewProfileButton">Мой профиль</system:String>
+    <system:String x:Key="OrderHistoryButton">История заказов</system:String>
+    <system:String x:Key="FavoritesButton">Избранные маршруты</system:String>
+    <system:String x:Key="LogoutButton">Выйти</system:String>
+
+    <system:String x:Key="SearchRoutesTitle">Поиск маршрутов</system:String>
+    <system:String x:Key="SearchRoutesHeader">Найти маршрут</system:String>
+    <system:String x:Key="SearchButton">Поиск</system:String>
+    <system:String x:Key="SelectButton">Выбрать</system:String>
+    <system:String x:Key="BackButton">Назад</system:String>
+
+    <system:String x:Key="RouteDetailsTitle">Детали маршрута</system:String>
+    <system:String x:Key="RouteDetailsHeader">Информация о маршруте</system:String>
+    <system:String x:Key="TimeLabel">Время</system:String>
+    <system:String x:Key="PriceLabel">Цена</system:String>
+    <system:String x:Key="AddToFavoritesButton">Добавить в избранное</system:String>
+    <system:String x:Key="PurchaseButton">Купить билет</system:String>
+
+    <system:String x:Key="UserProfileTitle">Профиль пользователя</system:String>
+    <system:String x:Key="UserProfileHeader">Редактирование профиля</system:String>
+    <system:String x:Key="FirstNameLabel">Имя</system:String>
+    <system:String x:Key="LastNameLabel">Фамилия</system:String>
+    <system:String x:Key="SurnameLabel">Отчество</system:String>
+    <system:String x:Key="EmailLabel">Email</system:String>
+    <system:String x:Key="PhoneLabel">Телефон</system:String>
+    <system:String x:Key="PasswordLabel">Новый пароль</system:String>
+    <system:String x:Key="ConfirmPasswordLabel">Подтвердите пароль</system:String>
+    <system:String x:Key="SaveButton">Сохранить</system:String>
+
+    <!-- Для PurchaseHistoryWindow -->
+    <system:String x:Key="PurchaseHistoryTitle">История покупок</system:String>
+    <system:String x:Key="PurchaseHistoryHeader">Ваши покупки</system:String>
+    <system:String x:Key="PurchaseIdColumn">ID покупки</system:String>
+    <system:String x:Key="PurchaseDateColumn">Дата покупки</system:String>
+    <system:String x:Key="PurchaseTimeColumn">Время покупки</system:String>
+    <system:String x:Key="StatusColumn">Статус</system:String>
+    <system:String x:Key="RateColumn">Оценка</system:String>
+    <system:String x:Key="RateButton">Оценить</system:String>
+
+    <!-- Для RatingWindow -->
+    <system:String x:Key="RateTitle">Оценка поездки</system:String>
+    <system:String x:Key="RateHeader">Оцените свою поездку</system:String>
+    <system:String x:Key="RatingLabel">Рейтинг</system:String>
+    <system:String x:Key="CommentLabel">Комментарий</system:String>
+    <system:String x:Key="SubmitRatingButton">Отправить</system:String>
+    <system:String x:Key="CancelButton">Отмена</system:String>
+</ResourceDictionary>

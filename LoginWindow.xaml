@@ -1,0 +1,66 @@
+﻿<Window x:Class="RouteBookingSystem.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource AppTitle}" 
+        Height="485" 
+        Width="691"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI"
+        Background="#FFF0F5F5">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/LoginStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid Margin="25 30">
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="{DynamicResource LoginTitle}"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           Foreground="#FF2E7D32"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 35"/>
+
+                <!-- Email -->
+                <Grid>
+                    <TextBox x:Name="txtEmail" 
+                             TextChanged="txtEmail_TextChanged" MaxLength="70"/>
+                    <TextBlock x:Name="txtEmailPlaceholder" 
+                               Text="{DynamicResource Email}" 
+                               
+                               Style="{StaticResource PlaceholderStyle}" Margin="12,12,0,0" VerticalAlignment="Top" />
+                </Grid>
+
+                <!-- Пароль -->
+                <Grid>
+                    <PasswordBox x:Name="txtPassword" 
+                                 PasswordChanged="txtPassword_PasswordChanged"
+                                 PasswordChar="●" MaxLength="50"/>
+                    <TextBlock x:Name="txtPasswordPlaceholder" 
+                               Text="{DynamicResource Password}" 
+                               Style="{StaticResource PlaceholderStyle}" Margin="12,12,0,0" VerticalAlignment="Top"/>
+                </Grid>
+
+                <!-- Кнопки -->
+                <Button Content="{DynamicResource SignIn}" 
+                        Height="45"
+                        FontSize="16"
+                        Margin="0 25 0 0"
+                        Click="LoginButton_Click"/>
+
+                <Button Content="{DynamicResource CreateAccount}"
+                        Background="#FF607D8B"
+                        Height="40"
+                        Margin="0 15 0 0"
+                        Click="RegisterButton_Click"/>
+            </StackPanel>
+
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -1,0 +1,645 @@
+﻿<Window x:Class="RouteBookingSystem.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="{DynamicResource AdminPanelTitle}" 
+        Height="900" 
+        Width="1600"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI"
+        Background="#FFF5F7FA"
+        WindowStyle="SingleBorderWindow"
+        AllowsTransparency="False">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/AdminStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TranslateTransform/>
+        </Grid.RenderTransform>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <TabControl Background="#FFF5F7FA" Margin="10" Grid.ColumnSpan="2">
+            <TabItem Header="{DynamicResource RoutesTab}">
+                <Grid Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0" Margin="8">
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0 0 0 8">
+                            <TextBox Width="200" 
+                                     Tag="{DynamicResource SearchPlaceholder}"
+                                     Text="{Binding TicketSearchQuery, UpdateSourceTrigger=PropertyChanged}" 
+                                     Height="40"
+                                     MaxLength="50"/>
+                            <ComboBox ItemsSource="{Binding TransportTypesForFilter}"
+                                      SelectedItem="{Binding SelectedTransportType}"
+                                      Width="120"
+                                      Margin="10 0 0 0"
+                                      Tag="{DynamicResource TransportTypeLabel}" 
+                                      Height="40">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
+                                <TextBlock Text="{DynamicResource PriceFrom}" VerticalAlignment="Center"/>
+                                <TextBox Width="70" Margin="4 0" 
+                                         Text="{Binding MinPrice, StringFormat=N2}" 
+                                         Height="40"
+                                         MaxLength="10"
+                                         PreviewTextInput="PriceValidationTextBox"
+                                         DataObject.Pasting="PricePasting"/>
+                                <TextBlock Text="{DynamicResource PriceTo}" VerticalAlignment="Center"/>
+                                <TextBox Width="70" Margin="4 0" 
+                                         Text="{Binding MaxPrice, StringFormat=N2}" 
+                                         Height="40"
+                                         MaxLength="10"
+                                         PreviewTextInput="PriceValidationTextBox"
+                                         DataObject.Pasting="PricePasting"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <DataGrid ItemsSource="{Binding FilteredTickets}" 
+                                  SelectedItem="{Binding SelectedTicket}"
+                                  AutoGenerateColumns="False"
+                                  EnableRowVirtualization="True"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Width="43">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource IDColumn}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding From}" Width="85">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource FromColumn}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding To}" Width="85">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource ToColumn}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Date, StringFormat=d}" Width="100">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource DateColumn}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Time}" Width="75">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource TimeColumn}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Type}" Width="100">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource TypeColumn}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Price, StringFormat=F2}" Width="65">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource PriceColumn}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Number}" Width="60">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource QuantityColumn}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Description}" Width="160">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource DescriptionColumn}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTemplateColumn Width="92">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{DynamicResource DeleteButton}"
+                                                    Command="{Binding DataContext.DeleteTicketCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+
+                    <Border Grid.Column="1" Style="{StaticResource PanelBorder}" Margin="8" Padding="12">
+                        <ScrollViewer>
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource RouteManagement}" 
+                                           FontSize="18" 
+                                           FontWeight="Bold" 
+                                           Margin="0 0 0 8"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0">
+                                        <TextBlock Text="{DynamicResource FromLabel}"/>
+                                        <TextBox Text="{Binding SelectedTicket.From, UpdateSourceTrigger=PropertyChanged}"
+                                                 MaxLength="50"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Margin="0 4">
+                                        <TextBlock Text="{DynamicResource ToLabel}"/>
+                                        <TextBox Text="{Binding SelectedTicket.To, UpdateSourceTrigger=PropertyChanged}"
+                                                 MaxLength="50"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2">
+                                        <TextBlock Text="{DynamicResource Posadka}" />
+                                        <TextBox Text="{Binding SelectedTicket.BoardingPoints, UpdateSourceTrigger=PropertyChanged}"
+                                                 AcceptsReturn="True"
+                                                 Height="60"
+                                                 TextWrapping="Wrap"
+                                                 VerticalScrollBarVisibility="Auto"
+                                                 MaxLength="120"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="3" Margin="0 4">
+                                        <TextBlock Text="{DynamicResource Exit}" />
+                                        <TextBox Text="{Binding SelectedTicket.DropOffPoints, UpdateSourceTrigger=PropertyChanged}"
+                                                 AcceptsReturn="True"
+                                                 Height="60"
+                                                 TextWrapping="Wrap"
+                                                 VerticalScrollBarVisibility="Auto"
+                                                 MaxLength="120"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="4">
+                                        <TextBlock Text="{DynamicResource DateLabel}"/>
+                                        <DatePicker SelectedDate="{Binding SelectedTicket.Date}"
+                                                    DisplayDateStart="{x:Static sys:DateTime.Today}"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="5" Margin="0 4">
+                                        <TextBlock Text="{DynamicResource TimeFormatLabel}"/>
+                                        <TextBox Text="{Binding SelectedTicket.Time}"
+                                                 MaxLength="5"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="6">
+                                        <TextBlock Text="{DynamicResource TransportTypeLabel}"/>
+                                        <ComboBox ItemsSource="{Binding TransportTypesForEdit}"
+                                                  SelectedItem="{Binding SelectedTicket.Type}"
+                                                  Margin="0 4 0 0"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="7" Margin="0 4">
+                                        <TextBlock Text="{DynamicResource PriceColumn}"/>
+                                        <TextBox Text="{Binding SelectedTicket.Price, StringFormat=N2}"
+                                                         MaxLength="10"
+                                                         PreviewTextInput="PriceValidationTextBox"
+                                                         DataObject.Pasting="PricePasting"/> 
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="8">
+                                        <TextBlock Text="{DynamicResource TicketsCountLabel}"/>
+                                        <TextBox Text="{Binding SelectedTicket.Number}"
+                                                 MaxLength="4"
+                                                 PreviewTextInput="IntegerValidationTextBox"/>      
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="9" Margin="0 4">
+                                        <TextBlock Text="{DynamicResource RouteDescriptionLabel}"/>
+                                        <TextBox Text="{Binding SelectedTicket.Description}"
+                                                 AcceptsReturn="True"
+                                                 Height="60"
+                                                 TextWrapping="Wrap"
+                                                 VerticalScrollBarVisibility="Auto"
+                                                 MaxLength="200"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="10" Margin="0 4">
+                                        <TextBlock Text="Компания"/>
+                                        <TextBox Text="{Binding SelectedTicket.Company}"
+                                                 MaxLength="50"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="11" Margin="0 8">
+                                        <Button Content="{DynamicResource SaveChangesButton}" 
+                                                Command="{Binding SaveTicketCommand}"
+                                                Height="50"
+                                                HorizontalAlignment="Stretch"/>
+                                        <Button Content="{DynamicResource CreateNewButton}" 
+                                                Command="{Binding AddTicketCommand}"
+                                                Style="{StaticResource CreateButtonStyle}"
+                                                Height="50"
+                                                Margin="0 6 0 0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource UsersTab}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0" Margin="8">
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0 0 0 8">
+                            <TextBox Width="200" 
+                                     Tag="Поиск пользователей..."
+                                     Text="{Binding UserSearchQuery, UpdateSourceTrigger=PropertyChanged}" 
+                                     Height="40"
+                                     MaxLength="50"/>
+                            <CheckBox Content="{DynamicResource Only}" 
+                                      Margin="10 0 0 0"
+                                      IsChecked="{Binding ShowAdminsOnly}"/>
+                        </StackPanel>
+                        <DataGrid ItemsSource="{Binding FilteredUsers}" 
+                                  SelectedItem="{Binding SelectedUser}"
+                                  AutoGenerateColumns="False"
+                                  EnableRowVirtualization="True"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Email}" Width="*">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource Email}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding FirstName}" Width="85">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource FirstName}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding LastName}" Width="95">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource LastName}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Surname}" Width="120">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource Surname}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding PhoneNumber}" Width="120">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource Phone}"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTemplateColumn Width="50">
+                                    <DataGridTemplateColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Блок"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.HeaderTemplate>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding IsBlocked, Mode=OneWay}" 
+                                                      HorizontalAlignment="Center"
+                                                      IsEnabled="False"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="45">
+                                    <DataGridTemplateColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{DynamicResource AdminCheckbox}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.HeaderTemplate>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding IsAdmin, Mode=OneWay}" 
+                                                      HorizontalAlignment="Center"
+                                                      IsEnabled="False"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{DynamicResource DeleteButton}" 
+                                                    Command="{Binding DataContext.DeleteUserCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                    <Border Grid.Column="1" Style="{StaticResource PanelBorder}" Margin="8" Padding="12">
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource UserManagement}" 
+                                       FontSize="18" 
+                                       FontWeight="Bold" 
+                                       Margin="0 0 0 8"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0">
+                                    <TextBlock Text="{DynamicResource Email}"/>
+                                    <TextBox Text="{Binding SelectedUser.Email, UpdateSourceTrigger=PropertyChanged}" 
+                                             IsEnabled="{Binding IsNewUser}"
+                                             MaxLength="70"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Margin="0 4">
+                                    <TextBlock Text="{DynamicResource Password}"/>
+                                    <PasswordBox x:Name="txtNewPassword"
+                                                 PasswordChanged="txtNewPassword_PasswordChanged"
+                                                 Margin="0 0 0 4" Height="40"
+                                                 MaxLength="50"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="2">
+                                    <TextBlock Text="{DynamicResource FirstName}"/>
+                                    <TextBox Text="{Binding SelectedUser.FirstName}"
+                                             MaxLength="50"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Margin="0 4">
+                                    <TextBlock Text="{DynamicResource LastName}"/>
+                                    <TextBox Text="{Binding SelectedUser.LastName}"
+                                             MaxLength="50"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="4">
+                                    <TextBlock Text="{DynamicResource Surname}"/>
+                                    <TextBox Text="{Binding SelectedUser.Surname}"
+                                             MaxLength="50"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="5" Margin="0 4">
+                                    <TextBlock Text="{DynamicResource Phone}"/>
+                                    <TextBox Text="{Binding SelectedUser.PhoneNumber}"
+                                             MaxLength="13"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="6" Margin="0 4" Orientation="Horizontal">
+                                    <CheckBox Content="{DynamicResource AdminCheckbox}" 
+                                              IsChecked="{Binding SelectedUser.IsAdmin}"/>
+                                    <CheckBox Content="Заблокировать" 
+                                              IsChecked="{Binding SelectedUser.IsBlocked}" 
+                                              Margin="20 0 0 0"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="7" Margin="0 8">
+                                    <Button Content="{DynamicResource SaveUserButton}" 
+                                            Command="{Binding SaveUserCommand}"
+                                            Height="50"
+                                            HorizontalAlignment="Stretch"/>
+                                    <Button Content="{DynamicResource CreateUserButton}" 
+                                            Command="{Binding AddUserCommand}"
+                                            Style="{StaticResource CreateButtonStyle}"
+                                            Height="50"
+                                            Margin="0 6 0 0"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Заказы">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0" Margin="8">
+                        <DataGrid ItemsSource="{Binding FilteredPurchasedTickets}" 
+                                  SelectedItem="{Binding SelectedPurchasedTicket}"
+                                  AutoGenerateColumns="False"
+                                  EnableRowVirtualization="True"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding PurchaseId}" Width="60">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="ID заказа"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding EmailUser}" Width="*">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Email"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding From}" Width="85">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Откуда"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding To}" Width="85">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Куда"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding RouteDate, StringFormat=d}" Width="100">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Дата"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding RouteTime}" Width="75">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Время"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding StatusText}" Width="110">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Статус"/>
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTemplateColumn Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Удалить" 
+                                                    Command="{Binding DataContext.DeletePurchasedTicketCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                    <Border Grid.Column="1" Style="{StaticResource PanelBorder}" Margin="8" Padding="12">
+                        <ScrollViewer>
+                            <StackPanel>
+                                <TextBlock Text="Детали заказа" 
+                                           FontSize="18" 
+                                           FontWeight="Bold" 
+                                           Margin="0 0 0 8"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0">
+                                        <TextBlock Text="ID заказа"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.PurchaseId, StringFormat={}{0}, TargetNullValue=''}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Margin="0 4">
+                                        <TextBlock Text="Email"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.EmailUser, TargetNullValue=''}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2">
+                                        <TextBlock Text="Место посадки"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.BoardingPoints, TargetNullValue=''}"
+                                                 IsReadOnly="True"
+                                                 AcceptsReturn="True"
+                                                 Height="60"
+                                                 TextWrapping="Wrap"
+                                                 VerticalScrollBarVisibility="Auto"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="3" Margin="0 4">
+                                        <TextBlock Text="Место высадки"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.DropOffPoints, TargetNullValue=''}"
+                                                 IsReadOnly="True"
+                                                 AcceptsReturn="True"
+                                                 Height="60"
+                                                 TextWrapping="Wrap"
+                                                 VerticalScrollBarVisibility="Auto"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="4">
+                                        <TextBlock Text="Оценка"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.Rating, StringFormat={}{0}, TargetNullValue='Нет оценки'}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="5" Margin="0 4">
+                                        <TextBlock Text="Комментарий"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.Comment, TargetNullValue='Нет комментария'}"
+                                                 IsReadOnly="True"
+                                                 AcceptsReturn="True"
+                                                 Height="60"
+                                                 TextWrapping="Wrap"
+                                                 VerticalScrollBarVisibility="Auto"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="6">
+                                        <TextBlock Text="Дата"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.RouteDate, StringFormat=d, TargetNullValue=''}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="7" Margin="0 4">
+                                        <TextBlock Text="Время"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.RouteTime, TargetNullValue=''}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="8">
+                                        <TextBlock Text="Дата покупки"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.PurchaseDate, StringFormat=d, TargetNullValue=''}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="9" Margin="0 4">
+                                        <TextBlock Text="Время покупки"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.PurchaseTime, TargetNullValue=''}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="10">
+                                        <TextBlock Text="Статус"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.StatusText, TargetNullValue=''}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="11" Margin="0 4">
+                                        <TextBlock Text="{DynamicResource QuantityColumn}"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.Number, StringFormat={}{0}, TargetNullValue=''}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="12">
+                                        <TextBlock Text="{DynamicResource PriceLabel}"/>
+                                        <TextBox Text="{Binding SelectedPurchasedTicket.Price, StringFormat={}{0:F2}, TargetNullValue=''}"
+                                                 IsReadOnly="True"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Статистика">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" 
+                               Text="Статистика заказов" 
+                               FontSize="20" 
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Margin="8"/>
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0">
+                        <lvc:PieChart Height="700" 
+                                      Width="700" 
+                                      Series="{Binding RouteStatisticsSeries}"
+                                      LegendLocation="Right"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

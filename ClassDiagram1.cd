@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="lab4wpf5oop.App">
+    <Position X="16.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab4wpf5oop.Models.Favorite">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAIAAAAAABAAAAgAAAAAAAA=</HashCode>
+      <FileName>Models\Favorites.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab4wpf5oop.Models.PurchasedTicket">
+    <Position X="21.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAEBQAAAICSAMAAAAIAAAAIABEAAQAwAAAAAAA=</HashCode>
+      <FileName>Models\PurchasedTicket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab4wpf5oop.Models.Ticket">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAQAgAACAAEAAAAAAAAAIAAABAQAgBAAAAQA=</HashCode>
+      <FileName>Models\Ticket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab4wpf5oop.Models.TripRating">
+    <Position X="17" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEBAAAAAAAAAAAAAIEAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TripRating.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab4wpf5oop.Models.User">
+    <Position X="23.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAEAAACAAAAAAAAAAQAAADAAAAgAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteBookingSystem.AdminViewModel" BaseTypeListCollapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="RouteBookingSystem.AdminViewModel.PurchasedTicket" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModels\AdminViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>JEwAQPokgjgcRC4ENSkYCCBChKgAAUEgjcJEDRCBKEI=</HashCode>
+      <FileName>ViewModels\AdminViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.FavoritesViewModel" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgIAAACAAAgAAAAAAIIAAACAAAAAE=</HashCode>
+      <FileName>ViewModels\FavoritesViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.FavoriteRoute">
+    <Position X="30.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAQAAAACAAAAAAAAAAAAIABABAQggAAAAAQA=</HashCode>
+      <FileName>ViewModels\FavoritesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteBookingSystem.PurchaseHistoryViewModel" BaseTypeListCollapsed="true">
+    <Position X="28.25" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAgAQAAAAAAABAAAIAAAAAAAgAAAAAAIAAQAAAIAAAE=</HashCode>
+      <FileName>ViewModels\PurchaseHistoryViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.RelayCommand" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.RouteDetailsViewModel" BaseTypeListCollapsed="true">
+    <Position X="26" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABABABAgUAAEACCJACAQBSAgAAAIIAIAAAkAAAjAAE=</HashCode>
+      <FileName>ViewModels\RouteDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.SearchRoutesViewModel" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RgRIAAAQAAAIBAAABQAIAARAshAIgABJBgAkACJAAAE=</HashCode>
+      <FileName>ViewModels\SearchRoutesViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.UserProfileViewModel" BaseTypeListCollapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEBAEQAACAECAAAYAEQQABApAAAAAAIAABABAAEACk=</HashCode>
+      <FileName>ViewModels\UserProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.AdminWindow" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Admin\AdminWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.LoginWindow" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAggAAAASAAAgAAAAAAAAAADAAAAAAAg=</HashCode>
+      <FileName>Views\Auth\LoginWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.RegistrationWindow" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAGAAEAAgCAEAAAAJAEAAABgjAAAAAAIACCAIAAEABk=</HashCode>
+      <FileName>Views\Auth\RegistrationWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.FavoritesWindow" BaseTypeListCollapsed="true">
+    <Position X="18" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAE=</HashCode>
+      <FileName>Views\FavoritesWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.CardDetails">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACBAAAAA=</HashCode>
+      <FileName>Views\PaymentWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteBookingSystem.PaymentWindow" BaseTypeListCollapsed="true">
+    <Position X="18" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAQIAAAIACAACAAAACCAAAAIAACAAAAAAAEAAA=</HashCode>
+      <FileName>Views\PaymentWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.PurchaseHistoryWindow" BaseTypeListCollapsed="true">
+    <Position X="18" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAACAAACAAAAE=</HashCode>
+      <FileName>Views\PurchaseHistoryWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.RatingWindow" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAQAAAAAAAAAAAAAAAAAEAAIQEAAAAAAAAAAQAA0=</HashCode>
+      <FileName>Views\RatingWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.RouteDetailsWindow" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAE=</HashCode>
+      <FileName>Views\RouteDetailsWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.SearchRoutesWindow" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAgAAAAAAACAAAAE=</HashCode>
+      <FileName>Views\SearchRoutesWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.UserDashboardWindow" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAACAAAAAgAAAAAgAAAAAAAAAAAIAAAE=</HashCode>
+      <FileName>Views\UserDashboardWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteBookingSystem.UserProfileWindow" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAACAAAAE=</HashCode>
+      <FileName>Views\UserProfileWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,108 @@
+﻿<Window x:Class="RouteBookingSystem.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource RegistrationTitle}" 
+        Height="761" 
+        Width="721"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI"
+        Background="#FFF0F5F5">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/RegStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="25 30">
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="{DynamicResource RegistrationHeader}"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           Foreground="#FF2E7D32"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 35"/>
+
+                <!-- Имя -->
+                <Grid>
+                    <TextBox x:Name="txtFirstName" 
+                             Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="50"/>
+                    <TextBlock x:Name="firstNamePlaceholder" 
+                               Text="{DynamicResource FirstName}" 
+                               Style="{StaticResource PlaceholderStyle}" Margin="12,12,0,0" VerticalAlignment="Top"/>
+                </Grid>
+
+                <!-- Фамилия -->
+                <Grid>
+                    <TextBox x:Name="txtLastName" 
+                             Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="50"/>
+                    <TextBlock x:Name="lastNamePlaceholder" 
+                               Text="{DynamicResource LastName}" 
+                               Style="{StaticResource PlaceholderStyle}" Margin="12,12,0,0" VerticalAlignment="Top"/>
+                </Grid>
+
+                <!-- Отчество -->
+                <Grid>
+                    <TextBox x:Name="txtSurname" 
+                             Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="50"/>
+                    <TextBlock x:Name="surnamePlaceholder" 
+                               Text="{DynamicResource Surname}" 
+                               Style="{StaticResource PlaceholderStyle}" Margin="12,12,0,0" VerticalAlignment="Top"/>
+                </Grid>
+
+                <!-- Email -->
+                <Grid>
+                    <TextBox x:Name="txtEmail" 
+                             Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="70"/>
+                    <TextBlock x:Name="emailPlaceholder" 
+                               Text="{DynamicResource Email}" 
+                               Style="{StaticResource PlaceholderStyle}" Margin="12,12,0,0" VerticalAlignment="Top"/>
+                </Grid>
+
+                <!-- Пароль -->
+                <Grid>
+                    <PasswordBox x:Name="txtPassword" 
+                                 PasswordChanged="txtPassword_PasswordChanged" MaxLength="50"/>
+                    <TextBlock x:Name="passwordPlaceholder" 
+                               Text="{DynamicResource Password}" 
+                               Style="{StaticResource PlaceholderStyle}" Margin="12,12,0,0" VerticalAlignment="Top"/>
+                </Grid>
+
+                <!-- Подтверждение пароля -->
+                <Grid>
+                    <PasswordBox x:Name="txtConfirmPassword" 
+                                 PasswordChanged="txtConfirmPassword_PasswordChanged" MaxLength="50"/>
+                    <TextBlock x:Name="confirmPasswordPlaceholder" 
+                               Text="{DynamicResource Confirm}" 
+                               Style="{StaticResource PlaceholderStyle}" Margin="12,12,0,0" VerticalAlignment="Top"/>
+                </Grid>
+
+                <!-- Телефон -->
+                <Grid>
+                    <TextBox x:Name="txtPhone" 
+                             Text="{Binding Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="13"/>
+                    <TextBlock x:Name="phonePlaceholder" 
+                               Text="{DynamicResource Phone}" 
+                               Style="{StaticResource PlaceholderStyle}" Margin="12,12,0,0" VerticalAlignment="Top"/>
+                </Grid>
+
+                <!-- Кнопки -->
+                <Button Content="{DynamicResource CreateAccountButton}"
+                        Height="45"
+                        FontSize="16"
+                        Margin="0 25 0 0"
+                        Click="RegisterButton_Click"/>
+
+                <Button Content="{DynamicResource BackToLoginButton}"
+                        Background="#FF607D8B"
+                        Height="40"
+                        Margin="0 15 0 0"
+                        Click="LoginButton_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

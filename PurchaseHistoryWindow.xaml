@@ -1,0 +1,120 @@
+﻿<Window x:Class="RouteBookingSystem.PurchaseHistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:RouteBookingSystem"
+        Title="{DynamicResource PurchaseHistoryTitle}"
+        Height="600"
+        Width="1000"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI"
+        Background="#FFF5F7FA"
+        WindowStyle="SingleBorderWindow">
+
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Styles/AdminStyles.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>
+
+	<Grid Margin="20">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<!-- Заголовок -->
+		<TextBlock Grid.Row="0"
+                   Text="{DynamicResource OrderHistoryButton}"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="#FF2E7D32"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 20"/>
+
+		<!-- Список истории покупок -->
+		<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+			<ItemsControl ItemsSource="{Binding PurchasedTickets}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Border Style="{StaticResource PanelBorder}" Margin="0 10">
+							<StackPanel Margin="15">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="150"/>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="150"/>
+										<ColumnDefinition Width="150"/>
+										<ColumnDefinition Width="150"/>
+									</Grid.ColumnDefinitions>
+
+									<!-- Дата и время отправления и статус  -->
+									<StackPanel Grid.Column="0">
+										<TextBlock Text="{Binding Date, StringFormat=d}" FontWeight="Bold" FontSize="14"/>
+										<TextBlock Text="{Binding Time}" Foreground="#FF607D8B" FontSize="14"/>
+										<TextBlock Text="{Binding StatusText}" FontSize="14"/>
+									</StackPanel>
+
+									<!-- Откуда и Куда -->
+									<StackPanel Grid.Column="1">
+										<TextBlock Text="{Binding From}" FontWeight="Bold" FontSize="16"/>
+										<TextBlock Text="{Binding BoardingPoints}" TextWrapping="Wrap" FontSize="14"/>
+										<TextBlock Text="{Binding To}" FontWeight="Bold" Margin="0 10 0 0" FontSize="16"/>
+										<TextBlock Text="{Binding DropOffPoints}" TextWrapping="Wrap" FontSize="14"/>
+									</StackPanel>
+
+									<!-- Количество мест, тип транспорта и цена -->
+									<StackPanel Grid.Column="3" HorizontalAlignment="Center">
+										<TextBlock FontSize="14">
+											<Run Text="{DynamicResource QuantityColumn}" FontWeight="Bold"/>
+											<Run Text=":" FontWeight="Bold"/>
+											<Run Text="{Binding Number}" FontWeight="Bold"/>
+										</TextBlock>
+										<TextBlock FontSize="14">
+											<Run Text="{DynamicResource PriceLabel}" Foreground="#FF607D8B"/>
+											<Run Text=":" Foreground="#FF607D8B"/>
+											<Run Text="{Binding Price, StringFormat=F2}" Foreground="#FF607D8B"/>
+										</TextBlock>
+										<TextBlock FontSize="14">
+											<Run Text="{DynamicResource TypeColumn}" />
+											<Run Text=":" />
+											<Run Text="{Binding Type}" />
+										</TextBlock>
+									</StackPanel>
+
+									<!-- Кнопки -->
+									<StackPanel Grid.Column="4" HorizontalAlignment="Right">
+										<Button Content="{DynamicResource RateButton}"
+                                                Width="100"
+                                                Height="35"
+                                                Click="RateTicket_Click"
+                                                Tag="{Binding PurchaseId}"
+                                                Margin="0 0 0 10"/>
+										<Button Content="{DynamicResource CancelButton}"
+                                                Width="100"
+                                                Height="35"
+                                                Click="CancelTicket_Click"
+                                                Background="#FF607D8B"
+                                                Foreground="White"
+                                                Tag="{Binding PurchaseId}"/>
+									</StackPanel>
+								</Grid>
+							</StackPanel>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+
+		<!-- Кнопка назад и переключение языка -->
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="{DynamicResource BackButton}"
+                    Height="40"
+                    Width="150"
+                    Background="#FF607D8B"
+                    Click="BackButton_Click"/>
+        </StackPanel>
+	</Grid>
+</Window>
